@@ -55,7 +55,7 @@
     --complimentary1: hsl(var(--hue-complimentary1), 95%, 50%);
     --complimentary2: hsl(var(--hue-complimentary2), 95%, 50%);
     --font-family: "Poppins", system-ui;
-
+    --cursor-trail-color: hsla(var(--hue), 95%, 50%, 0.5);
     /* Background gradient for dark mode */
     --bg-gradient: linear-gradient(
       to bottom,
@@ -522,6 +522,88 @@ a {
       transform: translateY(-5px);
       cursor: pointer;
   }
+  /* Context menu styles */
+  .context-menu {
+    display: none;
+    position: absolute;
+    background: hsl(var(--hue), 95%, 50%, 0.375); /* Semi-transparent background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft box shadow */
+    border-radius: 5px; /* Rounded corners */
+    padding: 0;
+    font-size: 16px;
+    list-style: none;
+    z-index: 100;
+  }
+
+  .context-menu-list {
+    padding: 0;
+  }
+
+  .context-menu-item {
+    cursor: pointer;
+    transition: background-color 0.2s;
+    padding: 8px 16px;
+    color: var(--light-color); /* Text color using your color scheme */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px;
+  }
+
+  .context-menu-item:hover {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background on hover */
+  }
+
+  .context-menu-item > svg {
+    fill: var(--light-color); /* SVG icon color using your color scheme */
+  }
+
+  .context-menu-item > .context-menu-label {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  .context-menu-item > .context-menu-accelerator {
+    color: rgba(255, 255, 255, 0.7); /* Semi-transparent gray for accelerator */
+  }
+
+
+  .custom-cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--cursor-trail-color);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s, width 0.15s, height 0.15s, opacity 0.15s;
+    opacity: 0;
+    z-index: 9999;
+  }
+
+  .custom-cursor.active {
+    width: 40px; /* Adjust the circle size as needed */
+    height: 40px;
+    opacity: 1;
+  }
+  /* Custom selected text style with transparency and rounded corners */
+  ::selection {
+    background-color: hsla(var(--hue), 95%, 50%, 0.375); /* Use the alpha channel for transparency */
+    color: var(--light-color);
+  }
+
+  /* Add rounded corners for the selection in Firefox */
+  ::-moz-selection {
+    background-color: hsla(var(--hue), 95%, 50%, 0.375);
+    color: var(--light-color);
+  }
+
+  /* Add rounded corners for the selection in Webkit-based browsers */
+  ::-webkit-selection {
+    background-color: hsla(var(--hue), 95%, 50%, 0.375);
+    color: var(--light-color);
+    border-radius: 0.25rem;
+  }
 
 </style>
 
@@ -543,8 +625,104 @@ a {
 </head>
 
 <body translate="no">
+  <div class="custom-cursor"></div>
   <!-- Canvas -->
-<canvas class="orb-canvas"></canvas>
+  <canvas class="orb-canvas"></canvas>
+  <div id="customContextMenu" class="context-menu">
+    <ul class="context-menu-list">
+      <li class="context-menu-item" id="copyOption">Copy</li>
+      <li class="context-menu-item" id="pasteOption">Paste</li>
+      <li class="context-menu-item" id="inspectOption">Inspect</li>
+    </ul>
+  </div>
+  <script>
+    const customCursor = document.querySelector('.custom-cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      const scrollX = window.pageXOffset;
+      const scrollY = window.pageYOffset;
+
+      customCursor.style.left = e.clientX + scrollX + 'px';
+      customCursor.style.top = e.clientY + scrollY + 'px';
+    });
+
+    document.addEventListener('mouseenter', () => {
+      customCursor.classList.add('active');
+    });
+
+    document.addEventListener('mouseleave', () => {
+      customCursor.classList.remove('active');
+    });
+
+    
+  </script>
+  <script>
+    const contextMenu = document.getElementById('customContextMenu');
+    const customPointer = document.createElement('div');
+    
+    customPointer.className = 'custom-pointer';
+    let isPasting = false; // Flag to track if the paste operation is in progress
+
+    document.body.appendChild(customPointer);
+
+    // Prevent the default context menu
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      const x = e.clientX;
+      const y = e.clientY;
+
+      contextMenu.style.display = 'block';
+      contextMenu.style.left = x + 'px';
+      contextMenu.style.top = y + 'px';
+
+      customPointer.style.left = x - 8 + 'px'; // Adjust the pointer position
+      customPointer.style.top = y + 'px';
+      customPointer.style.display = 'block';
+
+      // Close the context menu and hide the pointer when clicking anywhere
+      document.addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+        customPointer.style.display = 'none';
+      });
+
+      // Handle context menu item clicks
+      document.querySelector('#copyOption').addEventListener('click', () => {
+        // Functionality for "Copy" - Copy selected text to the clipboard
+        const selectedText = window.getSelection().toString();
+        if (selectedText) {
+          navigator.clipboard.writeText(selectedText)
+            .then(() => {
+              console.log('Text copied to clipboard: ' + selectedText);
+            })
+            .catch((error) => {
+              console.error('Error copying text to clipboard:', error);
+            });
+        }
+      });
+
+      document.querySelector('#pasteOption').addEventListener('click', () => {
+        // Functionality for "Paste" - Request clipboard access and paste clipboard content
+        if (!isPasting) { // Check if pasting is not in progress
+          isPasting = true; // Set the flag to true
+          navigator.clipboard.readText().then((clipText) => {
+            // Handle pasted text as needed
+            console.log('Pasted Text: ' + clipText);
+            isPasting = false; // Reset the flag
+          }).catch((error) => {
+            console.error('Error accessing clipboard:', error);
+            isPasting = false; // Reset the flag even in case of an error
+          });
+        }
+      });
+
+      document.querySelector('#inspectOption').addEventListener('click', () => {
+        // Functionality for "Inspect" - Open the browser's developer tools
+        window.devTools.open();
+      });
+    });
+  </script>
+
+
 <!-- Overlay -->
 <div class="overlay">
   <!-- Overlay inner wrapper -->
