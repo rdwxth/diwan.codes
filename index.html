@@ -41,6 +41,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-d1iBZ6B5hlVnU0i2nMY8Ag5CeabM2F5/GpFZeZtrFFDtaDGKIMyotvKThkVWs1yK" crossorigin="anonymous">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cheerio@1.0/lib/static.min.js"></script>
 
   
 <style>
@@ -602,44 +604,110 @@ Hey there! I'm Diwan Mohamed Faheer, and I am an avid programmer proficient in m
       </div>
     </div>
   </div>
-
   <div id="projects" class="project-box">
-      <h2 class="project-title">My Projects</h2>
-      <div class="project-grid">
-          <a href="project1.html" class="project-item">
-              <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
-              <h3 class="project-name">Project 1</h3>
-              <p class="project-description">Description of Project 1.</p>
-          </a>
-        <a href="project1.html" class="project-item">
-            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
-            <h3 class="project-name">Project 1</h3>
-            <p class="project-description">Description of Project 1.</p>
-        </a>
-        <a href="project1.html" class="project-item">
-            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
-            <h3 class="project-name">Project 1</h3>
-            <p class="project-description">Description of Project 1.</p>
-        </a>
-        <a href="project1.html" class="project-item">
-            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
-            <h3 class="project-name">Project 1</h3>
-            <p class="project-description">Description of Project 1.</p>
-        </a>
-        <a href="project1.html" class="project-item">
-            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
-            <h3 class="project-name">Project 1</h3>
-            <p class="project-description">Description of Project 1.</p>
-        </a>
-        <a href="project1.html" class="project-item">
-            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
-            <h3 class="project-name">Project 1</h3>
-            <p class="project-description">Description of Project 1.</p>
-        </a>
-        
-          <!-- Repeat this block for each project -->
-      </div>
+    <h2 class="project-title">My Projects</h2>
+    <div class="project-grid" id="project-grid">
+      <!-- Project items will be dynamically added here -->
+    </div>
   </div>
+
+  <script>
+    // Function to extract the twitter:image:src meta tag from a webpage
+    async function getTwitterImageSrc(url) {
+      try {
+        // Fetch the URL with "no-cors" mode
+        const response = await fetch(url, { mode: 'no-cors' });
+
+        if (!response.ok) {
+          console.error('Failed to fetch the webpage:', response.status);
+          return "https://cdn.idntimes.com/content-images/duniaku/post/20220801/62a1ac70484ab90ae870152b-github-4-022262d23ca64cb48868a4728c0b4c6b.png";
+        }
+
+        // Parse the response text
+        const html = await response.text();
+        console.log(html)
+        // Regular expression to match the twitter:image:src meta tag
+        const twitterImageSrcRegex = /<meta\s+property="twitter:image:src"\s+content="([^"]+)"/i;
+
+        // Search for the regex match in the HTML
+        const matches = html.match(twitterImageSrcRegex);
+
+        if (matches && matches.length > 1) {
+          const twitterImageSrc = matches[1];
+          return twitterImageSrc;
+        } else {
+          return "https://cdn.idntimes.com/content-images/duniaku/post/20220801/62a1ac70484ab90ae870152b-github-4-022262d23ca64cb48868a4728c0b4c6b.png"; // If the tag is not found
+        }
+      } catch (error) {
+        console.error('Error fetching and parsing the webpage:', error);
+        return "https://cdn.idntimes.com/content-images/duniaku/post/20220801/62a1ac70484ab90ae870152b-github-4-022262d23ca64cb48868a4728c0b4c6b.png";
+      }
+    }
+
+
+
+    // Function to fetch GitHub repositories and their images
+    async function fetchGitHubProjects() {
+      const githubUsername = 'Cu3t0m'; // Replace with your GitHub username
+      const githubAPIURL = `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=20`;
+
+      try {
+        const response = await fetch(githubAPIURL);
+        const data = await response.json();
+
+        if (data.length > 0) {
+          const projectGrid = document.getElementById('project-grid');
+          const maxProjectsToDisplay = 6;
+          let displayedProjects = 0;
+
+          // Filter out forked repositories and limit to the first 6
+          for (const project of data) {
+            if (!project.fork && displayedProjects < maxProjectsToDisplay) {
+              const projectItem = document.createElement('a');
+              projectItem.href = project.html_url;
+              projectItem.classList.add('project-item');
+
+              // Use the getTwitterImageSrc function to fetch the image URL
+              const imageSrc = await getTwitterImageSrc(project.html_url);
+              if (imageSrc) {
+                const projectImage = document.createElement('img');
+                projectImage.src = imageSrc;
+                projectImage.alt = project.name;
+                projectImage.classList.add('project-image');
+                projectItem.appendChild(projectImage);
+              }
+
+              const projectTitle = document.createElement('h3');
+              projectTitle.classList.add('project-name');
+              projectTitle.textContent = project.name;
+
+              const projectDescription = document.createElement('p');
+              projectDescription.classList.add('project-description');
+              projectDescription.textContent = project.description || 'No description available.';
+
+              projectItem.appendChild(projectTitle);
+              projectItem.appendChild(projectDescription);
+
+              projectGrid.appendChild(projectItem);
+
+              displayedProjects += 1;
+            }
+          }
+        } else {
+          console.error('No GitHub repositories found for the provided username.');
+        }
+      } catch (error) {
+        console.error('Error fetching data from GitHub:', error);
+      }
+    }
+
+    // Call the function to fetch GitHub projects when the page loads
+    fetchGitHubProjects();
+
+
+  </script>
+
+
   <div class="contact-box">
       <h2 class="contact-title">Get in Touch</h2>
 
