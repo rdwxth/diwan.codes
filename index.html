@@ -2,6 +2,15 @@
 <html lang="en" >
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MDVTHXZJP0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-MDVTHXZJP0');
+  </script>
   <meta charset="UTF-8">
   
 
@@ -29,6 +38,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-d1iBZ6B5hlVnU0i2nMY8Ag5CeabM2F5/GpFZeZtrFFDtaDGKIMyotvKThkVWs1yK" crossorigin="anonymous">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -241,9 +251,292 @@ a {
     margin-bottom: 1rem;
   }
 }
+
+
+  .graph-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.375);
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    padding: 8rem 6rem; /* Adjust the padding as needed to match your overlay */
+    width: 100%; /* Set to match the maximum width of the overlay */
+    max-width: 1140px;
+    max-height: 640px;
+    margin: 2rem 0;
+    
+  }
+
+  .graph {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .graph-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    width: 100%; /* Set the bar width to 100% for full width */
+  }
+
+  .bar-label {
+    font-size: 1rem;
+    font-weight: 600;
+    width: 25%;
+    color: var(--dark-color);
+  }
+
+  .bar-fill {
+    width: 50%; /* Adjust the width as per your proficiency (e.g., width: 80%;) */
+    height: 1.5rem;
+    background: var(--dark-color);
+    border: none;
+    border-radius: 0.5rem;
+    transition: transform 150ms ease;
+    outline-color: hsl(var(--hue), 95%, 50%);
+  }
+  
+  .graph-title {
+    font-size: 1.875rem;
+    line-height: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+  }
+
+  .project-box {
+      background: rgba(255, 255, 255, 0.375);
+      box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      padding: 2rem;
+      width: 100%;
+      max-width: 1140px;
+      margin: 2rem 0;
+  }
+
+  .project-title {
+      font-size: 1.875rem;
+      line-height: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 2rem;
+  }
+
+  .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+  }
+
+  .project-item {
+      background: rgba(255, 255, 255, 0.375);
+      box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+  }
+
+  .project-name {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 1rem;
+  }
+
+  .project-description {
+      font-size: 0.875rem;
+      margin-top: 1rem;
+  }
+
+  .project-image {
+      border-radius: 2rem;
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+  }
+
+  .project-item:hover {
+      transform: translateY(-5px);
+  }
+
+  .project-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      transition: opacity 0.2s;
+  }
+
+  .project-item:hover .project-image::before {
+      opacity: 1;
+  }
+
+
+  .topbar {
+      background: rgba(255, 255, 255, 0.375);
+      box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      margin: 2rem 0;
+      width: 100%; /* Set to match the maximum width of the overlay */
+      max-width: 1140px;
+      max-height: 640px;
+  }
+
+  .topbar-logo a {
+      font-size: 1.25rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--dark-color);
+  }
+
+  .topbar-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+  }
+
+  .topbar-nav li {
+      font-size: 1rem;
+  }
+
+  .topbar-nav a {
+      text-decoration: none;
+      color: var(--dark-color);
+      transition: color 0.2s;
+  }
+
+  .topbar-nav a:hover {
+      color: var(--base);
+  }
+
+  .contact-box {
+      background: rgba(255, 255, 255, 0.375);
+      box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.125);
+      padding: 2rem;
+      margin: 2rem 0;
+      width: 100%; /* Set to match the maximum width of the overlay */
+      max-width: 1140px;
+      max-height: 640px;
+  }
+
+  .contact-title {
+      font-size: 1.875rem;
+      line-height: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 2rem;
+  }
+
+  .contact-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .contact-socials ul {
+      list-style: none;
+      padding: 0;
+  }
+
+  .contact-socials li {
+      font-size: 1rem;
+      margin: 1rem 0;
+  }
+
+  .contact-socials a {
+      text-decoration: none;
+      color: var(--dark-color);
+      transition: color 0.2s;
+      font-size: 1.5rem;
+      margin: 0 1rem;
+  }
+
+  .contact-socials a:hover {
+      color: var(--base);
+  }
+
+  .contact-email p {
+      font-size: 1rem;
+      margin-top: 2rem;
+  }
+
+  .contact-email a {
+      text-decoration: none;
+      color: var(--dark-color);
+      transition: color 0.2s;
+  }
+
+  .contact-email a:hover {
+      color: var(--base);
+  }
+  .footer {
+      background: transparent;
+      text-align: center;
+      padding: 2rem;
+  }
+
+  .footer-content {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+  }
+
+  .footer-bubble {
+      background: rgba(255, 255, 255, 0.375);
+      box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+      border-radius: 2rem;
+      padding: 1rem 2rem;
+      color: var(--dark-color);
+      text-align: center;
+      font-weight: 600;
+      transition: transform 150ms ease;
+      outline-color: hsl(var(--hue), 95%, 50%);
+  }
+
+  .footer-bubble:hover {
+      transform: translateY(-5px);
+      cursor: pointer;
+  }
+
 </style>
 
-  
+  <div class="topbar">
+      <div class="topbar-logo">
+          <a href="index.html">diwan.codes</a>
+      </div>
+      <nav class="topbar-nav">
+          <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="#contact">Contact</a></li>
+          </ul>
+      </nav>
+  </div>
+
   
 </head>
 
@@ -279,9 +572,83 @@ Hey there! I'm Diwan Mohamed Faheer, and I am an avid programmer proficient in m
         <span class="overlay__btn-emoji">🎨</span>
       </button>
     </div>
+
+
   </div>
 </div>
-  
+
+  <div class="graph-box">
+    <h2 class="graph-title">My Skills</h2>
+    <div class="graph">
+      <div class="graph-bar">
+        <div class="bar-label">Lua</div>
+        <div class="bar-fill" style="width: 80%;"></div>
+      </div>
+      <div class="graph-bar">
+        <div class="bar-label">JavaScript</div>
+        <div class="bar-fill" style="width: 90%;"></div>
+      </div>
+      <div class="graph-bar">
+        <div class="bar-label">Python</div>
+        <div class="bar-fill" style="width: 100%;"></div>
+      </div>
+      <div class="graph-bar">
+        <div class="bar-label">Go</div>
+        <div class="bar-fill" style="width: 60%;"></div>
+      </div>
+      <div class="graph-bar">
+        <div class="bar-label">HTML/CSS</div>
+        <div class="bar-fill" style="width: 85%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="projects" class="project-box">
+      <h2 class="project-title">My Projects</h2>
+      <div class="project-grid">
+          <a href="project1.html" class="project-item">
+              <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
+              <h3 class="project-name">Project 1</h3>
+              <p class="project-description">Description of Project 1.</p>
+          </a>
+        <a href="project1.html" class="project-item">
+            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
+            <h3 class="project-name">Project 1</h3>
+            <p class="project-description">Description of Project 1.</p>
+        </a>
+        <a href="project1.html" class="project-item">
+            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
+            <h3 class="project-name">Project 1</h3>
+            <p class="project-description">Description of Project 1.</p>
+        </a>
+        <a href="project1.html" class="project-item">
+            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
+            <h3 class="project-name">Project 1</h3>
+            <p class="project-description">Description of Project 1.</p>
+        </a>
+        <a href="project1.html" class="project-item">
+            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
+            <h3 class="project-name">Project 1</h3>
+            <p class="project-description">Description of Project 1.</p>
+        </a>
+        <a href="project1.html" class="project-item">
+            <img src="https://www.4x3.net/sites/default/files/styles/blog-image_700x380px/public/default_images/default-4x3-730x380.png?itok=d1zqiU1e" alt="Project 1" class="project-image" />
+            <h3 class="project-name">Project 1</h3>
+            <p class="project-description">Description of Project 1.</p>
+        </a>
+        
+          <!-- Repeat this block for each project -->
+      </div>
+  </div>
+  <div class="contact-box">
+      <h2 class="contact-title">Get in Touch</h2>
+
+          <div class="contact-email">
+              <p>Still working on this area :D</p>
+          </div>
+      </div>
+  </div>
+
       <script id="rendered-js" type="module">
 import * as PIXI from "https://cdn.skypack.dev/pixi.js@5.x";
 import { KawaseBlurFilter } from "https://cdn.skypack.dev/@pixi/filter-kawase-blur@3.2.0";
@@ -515,5 +882,28 @@ addEventListener("click", () => {
 
   
 </body>
+  <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-bubble">
+            <p><a href="#">Go back up</a></p>
+        </div>
+          <div class="footer-bubble">
+              <p>&copy; 2023 diwan.codes</p>
+          </div>
+          <div class="footer-bubble">
+              <p>Privacy Policy</p>
+          </div>
+          <div class="footer-bubble">
+              <p>Terms of Service</p>
+          </div>
+        <div class="footer-bubble">
+            <p>Disclaimers</p>
+        </div>
+
+        <div class="footer-bubble">
+            <p>Statistics</p>
+        </div>
+      </div>
+  </footer>
 
 </html>
