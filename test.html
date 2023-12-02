@@ -26,8 +26,8 @@
   <meta property="og:image" content="https://imgs.search.brave.com/A-mw-NRU1tLCIoqWQULKaHQSjoUKeESwT0GSzfa8xQ8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9ob3Rl/bW9qaS5jb20vaW1h/Z2VzL2Vtb2ppL2gv/NG4yYzBnMXk0YWJ2/aC5wbmc">
   <meta property="og:url" content="https://diwan.codes">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@diwan.codes">
-  <meta name="twitter:title" content="Diwan Mohamed Faheer - Portfolio">
+  <meta name="twitter:site" content="@YourTwitterHandle">
+  <meta name="twitter:title" content="Your Name - Portfolio">
   <meta name="twitter:description" content="A website all about me">
   <meta name="twitter:image" content="https://imgs.search.brave.com/A-mw-NRU1tLCIoqWQULKaHQSjoUKeESwT0GSzfa8xQ8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9ob3Rl/bW9qaS5jb20vaW1h/Z2VzL2Vtb2ppL2gv/NG4yYzBnMXk0YWJ2/aC5wbmc">
   <link rel="icon" href="https://imgs.search.brave.com/A-mw-NRU1tLCIoqWQULKaHQSjoUKeESwT0GSzfa8xQ8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9ob3Rl/bW9qaS5jb20vaW1h/Z2VzL2Vtb2ppL2gv/NG4yYzBnMXk0YWJ2/aC5wbmc" type="image/x-icon">
@@ -434,67 +434,78 @@ a {
   }
 
   .contact-box {
-      background: rgba(255, 255, 255, 0.375);
-      box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
-      border-radius: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.125);
-      padding: 2rem;
-      margin: 2rem 0;
-      width: 100%; /* Set to match the maximum width of the overlay */
-      max-width: 1140px;
-      max-height: 640px;
+    background: rgba(255, 255, 255, 0.375); /* Adjusted background transparency */
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 1140px;
+    max-height: 640px;
   }
 
   .contact-title {
-      font-size: 1.875rem;
-      line-height: 2.75rem;
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 2rem;
+    font-size: 1.875rem;
+    line-height: 2.75rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+    text-align: left; /* Align the title to the left */
   }
 
   .contact-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    text-align: left; /* Align content to the left */
+  }
+
+  .contact-email h3,
+  .contact-socials h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+    text-align: left; /* Align the headings to the left */
   }
 
   .contact-socials ul {
-      list-style: none;
-      padding: 0;
+    list-style: none;
+    padding: 0;
   }
 
   .contact-socials li {
-      font-size: 1rem;
-      margin: 1rem 0;
+    font-size: 1rem;
   }
 
   .contact-socials a {
-      text-decoration: none;
-      color: var(--dark-color);
-      transition: color 0.2s;
-      font-size: 1.5rem;
-      margin: 0 1rem;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: color 0.2s;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    text-align: left; /* Align the email text to the left */
   }
 
   .contact-socials a:hover {
-      color: var(--base);
+    color: var(--base);
   }
 
   .contact-email p {
-      font-size: 1rem;
-      margin-top: 2rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: left; /* Align the email text to the left */
   }
 
   .contact-email a {
-      text-decoration: none;
-      color: var(--dark-color);
-      transition: color 0.2s;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: color 0.2s;
+    font-weight: 700;
+    text-align: left; /* Align the email text to the left */
   }
 
   .contact-email a:hover {
-      color: var(--base);
+    color: var(--base);
   }
+
   .footer {
       background: transparent;
       text-align: center;
@@ -569,30 +580,24 @@ a {
   }
 
 
-  .cursor {
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    background: white;
+  .custom-cursor {
     position: absolute;
-    z-index: 999;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--cursor-trail-color);
     pointer-events: none;
-    mix-blend-mode: difference;
-
-    &-f {
-      width: var(--size);
-      height: var(--size);
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='47' height='47' viewBox='0 0 47 47' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M42.4202 42.4202C38.8403 46 33.3594 46 23.5 46C13.6406 46 8.15966 46 4.57983 42.4202C1 38.8403 1 33.3594 1 23.5C1 13.6406 1 8.15966 4.57983 4.57983C8.15966 1 13.6406 1 23.5 1C33.3594 1 38.8403 1 42.4202 4.57983C46 8.15966 46 13.6406 46 23.5C46 33.3594 46 38.8403 42.4202 42.4202Z' stroke='white'/%3E%3C/svg%3E%0A");
-      background-size: cover;
-      mix-blend-mode: difference;
-      pointer-events: none;
-      opacity: .5;
-    }
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s, width 0.15s, height 0.15s, opacity 0.15s;
+    opacity: 0;
+    z-index: 9999;
   }
 
+  .custom-cursor.active {
+    width: 40px; /* Adjust the circle size as needed */
+    height: 40px;
+    opacity: 1;
+  }
   /* Custom selected text style with transparency and rounded corners */
   ::selection {
     background-color: hsla(var(--hue), 95%, 50%, 0.375); /* Use the alpha channel for transparency */
@@ -611,32 +616,31 @@ a {
     color: var(--light-color);
     border-radius: 0.25rem;
   }
- .context-menu-popup {
-   position: absolute;
-   background: hsl(var(--hue), 95%, 50%, 0.8); /* Adjust the background color and opacity */
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   border-radius: 5px;
-   padding: 5px 10px;
-   font-size: 16px;
-   z-index: 100;
-   color: var(--light-color); /* Text color using your color scheme */
-   display: none; /* Initially hidden */
-   pointer-events: none; /* Avoid blocking clicks underneath */
-   transition: display 0.2s, left 0.2s, top 0.2s;
-   white-space: nowrap;
-   user-select: none; /* Prevent text selection in the popup */
- }
+  @media only screen and (max-width: 600px) {
+    .footer-content {
+      flex-direction: column; /* Adjust to stack footer elements vertically on smaller screens */
+      align-items: center;
+    }
 
- .context-menu-popup::before {
-   content: ''; /* Add an arrow-like element */
-   position: absolute;
-   top: 100%;
-   left: 50%;
-   transform: translateX(-50%);
-   border-width: 5px;
-   border-style: solid;
-   border-color: transparent transparent hsl(var(--hue), 95%, 50%, 0.8);
- }
+    .footer-bubble {
+      margin-top: 1rem; /* Adjust the spacing for individual bubbles */
+    }
+  }
+  @media only screen and (max-width: 1140px) {
+    .topbar {
+      padding: 1rem 2rem; /* Adjust the padding for smaller screens */
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .project-grid {
+      grid-template-columns: repeat(1, 1fr); /* Adjust to a single column layout on smaller screens */
+    }
+  }
+  @media only screen and (max-width: 840px) {
+    .graph-bar {
+      flex-direction: column; /* Adjust to stack bars vertically on smaller screens */
+    }
+  }
 
 </style>
 
@@ -669,108 +673,46 @@ a {
     </ul>
   </div>
   <script>
+    const customCursor = document.querySelector('.custom-cursor');
 
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor';
+    document.addEventListener('mousemove', (e) => {
+      const scrollX = window.pageXOffset;
+      const scrollY = window.pageYOffset;
 
-    const cursorF = document.createElement('div');
-    cursorF.className = 'cursor-f';
-    let cursorX = 0;
-    let cursorY = 0;
-    let pageX = 0;
-    let pageY = 0;
-    let size = 8;
-    let sizeF = 36;
-    let followSpeed = 0.16;
-
-    document.body.appendChild(cursor);
-    document.body.appendChild(cursorF);
-
-    if ('ontouchstart' in window) {
-      cursor.style.display = 'none';
-      cursorF.style.display = 'none';
-    }
-
-    cursor.style.setProperty('--size', size + 'px');
-    cursorF.style.setProperty('--size', sizeF + 'px');
-
-    window.addEventListener('mousemove', function (e) {
-      pageX = e.clientX;
-      pageY = e.clientY + window.pageYOffset; // Adjust for scrolling
-      cursor.style.left = e.clientX - size / 2 + 'px';
-      cursor.style.top = pageY - size / 2 + 'px'; // Adjust for scrolling
+      customCursor.style.left = e.clientX + scrollX + 'px';
+      customCursor.style.top = e.clientY + scrollY + 'px';
     });
 
-    function loop() {
-      cursorX = lerp(cursorX, pageX, followSpeed);
-      cursorY = lerp(cursorY, pageY, followSpeed);
-      cursorF.style.top = cursorY - sizeF / 2 + 'px';
-      cursorF.style.left = cursorX - sizeF / 2 + 'px';
-      requestAnimationFrame(loop);
-    }
+    document.addEventListener('mouseenter', () => {
+      customCursor.classList.add('active');
+    });
 
-    loop();
-
-    let startY;
-    let endY;
-    let clicked = false;
-
-    function mousedown(e) {
-      gsap.to(cursor, { scale: 4.5 });
-      gsap.to(cursorF, { scale: 0.4 });
-
-      clicked = true;
-      startY = e.clientY + window.pageYOffset || e.touches[0].clientY || e.targetTouches[0].clientY;
-    }
-
-    function mouseup(e) {
-      gsap.to(cursor, { scale: 1 });
-      gsap.to(cursorF, { scale: 1 });
-
-      endY = e.clientY + window.pageYOffset || endY;
-      if (clicked && startY && Math.abs(startY - endY) >= 40) {
-        go(!Math.min(0, startY - endY) ? 1 : -1);
-        clicked = false;
-        startY = null;
-        endY = null;
-      }
-    }
-
-    window.addEventListener('mousedown', mousedown, false);
-    window.addEventListener('touchstart', mousedown, false);
-    window.addEventListener('touchmove', function (e) {
-      if (clicked) {
-        endY = e.touches[0].clientY + window.pageYOffset || e.targetTouches[0].clientY;
-      }
-    }, false);
-
-    window.addEventListener('touchend', mouseup, false);
-    window.addEventListener('mouseup', mouseup, false);
+    document.addEventListener('mouseleave', () => {
+      customCursor.classList.remove('active');
+    });
 
     
   </script>
   <script>
     const contextMenu = document.getElementById('customContextMenu');
     const customPointer = document.createElement('div');
-    const popup = document.createElement('div');
-
+    
     customPointer.className = 'custom-pointer';
-    popup.className = 'context-menu-popup';
+    let isPasting = false; // Flag to track if the paste operation is in progress
 
     document.body.appendChild(customPointer);
-    document.body.appendChild(popup);
 
+    // Prevent the default context menu
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault();
-
       const x = e.clientX;
-      const y = e.clientY + window.scrollY;
+      const y = e.clientY;
 
       contextMenu.style.display = 'block';
       contextMenu.style.left = x + 'px';
       contextMenu.style.top = y + 'px';
 
-      customPointer.style.left = x - 8 + 'px';
+      customPointer.style.left = x - 8 + 'px'; // Adjust the pointer position
       customPointer.style.top = y + 'px';
       customPointer.style.display = 'block';
 
@@ -778,11 +720,11 @@ a {
       document.addEventListener('click', () => {
         contextMenu.style.display = 'none';
         customPointer.style.display = 'none';
-        hidePopup();
       });
 
       // Handle context menu item clicks
       document.querySelector('#copyOption').addEventListener('click', () => {
+        // Functionality for "Copy" - Copy selected text to the clipboard
         const selectedText = window.getSelection().toString();
         if (selectedText) {
           navigator.clipboard.writeText(selectedText)
@@ -792,60 +734,29 @@ a {
             .catch((error) => {
               console.error('Error copying text to clipboard:', error);
             });
-        } else {
-          const selectedImage = e.target.closest('img');
-          if (selectedImage) {
-            const imageURL = selectedImage.src;
-            navigator.clipboard.writeText(imageURL)
-              .then(() => {
-                console.log('Image URL copied to clipboard: ' + imageURL);
-              })
-              .catch((error) => {
-                console.error('Error copying image URL to clipboard:', error);
-              });
-          }
         }
-        showPopup('Use Ctrl+C to copy'); // Show the copy message in the popup
       });
 
       document.querySelector('#pasteOption').addEventListener('click', () => {
-        if (!isPasting) {
-          isPasting = true;
-          navigator.clipboard.read().then((clipData) => {
-            for (const item of clipData) {
-              if (item.types.includes('text/plain')) {
-                console.log('Pasted Text: ' + item.getType('text/plain'));
-              } else if (item.types.includes('image/png') || item.types.includes('image/jpeg')) {
-                const imageURL = URL.createObjectURL(item);
-                console.log('Pasted Image URL: ' + imageURL);
-              }
-            }
-            isPasting = false;
+        // Functionality for "Paste" - Request clipboard access and paste clipboard content
+        if (!isPasting) { // Check if pasting is not in progress
+          isPasting = true; // Set the flag to true
+          navigator.clipboard.readText().then((clipText) => {
+            // Handle pasted text as needed
+            console.log('Pasted Text: ' + clipText);
+            isPasting = false; // Reset the flag
           }).catch((error) => {
             console.error('Error accessing clipboard:', error);
-            isPasting = false;
+            isPasting = false; // Reset the flag even in case of an error
           });
-          showPopup('Use Ctrl+V to paste'); // Show the paste message in the popup
         }
       });
 
       document.querySelector('#inspectOption').addEventListener('click', () => {
+        // Functionality for "Inspect" - Open the browser's developer tools
         window.devTools.open();
       });
     });
-
-    function showPopup(message) {
-      popup.style.display = 'block';
-      popup.innerText = message;
-      popup.style.left = (parseInt(contextMenu.style.left) + 10) + 'px';
-      popup.style.top = (parseInt(contextMenu.style.top) - 20) + 'px';
-    }
-
-    function hidePopup() {
-      popup.style.display = 'none';
-    }
-
-
   </script>
 
 
@@ -1000,13 +911,24 @@ Hey there! I'm Diwan Mohamed Faheer, and I am an avid programmer proficient in m
 
 
   <div class="contact-box">
-      <h2 class="contact-title">Get in Touch</h2>
-
-          <div class="contact-email">
-              <p>Still working on this area :D</p>
-          </div>
+    <h2 class="contact-title">Get in Touch</h2>
+    <div class="contact-content">
+      <div class="contact-email">
+        <h3>Contact via Email:</h3>
+        <p>If you want to get in touch via email, you can reach me at <a href="mailto:your@email.com">your@email.com</a>.</p>
       </div>
+      <div class="contact-socials">
+        <h3>Connect with me on social media:</h3>
+        <ul>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+          <li><a href="#"><i class="fab fa-github"></i></a></li>
+          <!-- Add more social media links with Font Awesome icons as needed -->
+        </ul>
+      </div>
+    </div>
   </div>
+
 
       <script id="rendered-js" type="module">
 import * as PIXI from "https://cdn.skypack.dev/pixi.js@5.x";
