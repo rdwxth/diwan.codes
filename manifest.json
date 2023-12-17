@@ -1,0 +1,16 @@
+{
+    "name": "Diwan Mohamed Faheer - Portfolio",
+    "short_name": "Portfolio",
+    "description": "A website about Diwan Mohamed Faheer and his skills.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3498db",
+    "icons": [
+        {
+            "src": "/static/logo.webp",
+            "sizes": "136x",
+            "type": "image/webp"
+        }
+    ]
+}
